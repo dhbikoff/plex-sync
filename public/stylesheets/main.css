@@ -5,24 +5,19 @@ body {
 }
 
 .myButton {
-    position: relative;
-    float: right;
-    margin-top: 20px;
+    position: absolute;
+    left: -9999px
+}
+
+.wrapper {
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .syncButton {
     position: relative;
     float: left;
     margin-top: auto;
-}
-
-.wrapper {
-    border: 1px solid gray;
-    padding: 20px;
-    position: absolute;
-    left: 50%;
-    margin-top: 10px;
-    transform: translate(-50%,0%);
 }
 
 .login-tag {
