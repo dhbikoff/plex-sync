@@ -2,3 +2,7 @@ Plex Sync
 =================================
 
 Web app for publishing your local Plex server for external access.
+
+- Play Framework (Java)
+- Java 8
+
