@@ -30,6 +30,7 @@ public class Application extends Controller {
     }
 
     public static Result login() {
+        Logger.info("Login request");
         Form<Login> form = new Form<>(Login.class).bindFromRequest(request());
         if (form.hasErrors()) {
             Logger.warn("login error " + form.errors());
@@ -48,25 +49,30 @@ public class Application extends Controller {
             return redirect("/");
         }
 
+        Logger.info("Login successful");
         session(AUTHORIZED, USERNAME);
         return redirect("/syncStatus");
     }
 
     public static F.Promise<Result> syncStatus() {
+        Logger.info("Sync status request");
         if (!isAuthorized()) {
             return F.Promise.pure(redirect("/"));
         }
 
-        F.Promise<String> connected = syncService.isServerConnected();
+        F.Promise<String> connected = syncService.serverConnectionStatus();
+        Logger.info("Received server status");
         return connected.map(conn -> ok(sync.render(conn)));
     }
 
     public static F.Promise<Result> syncServer() {
+        Logger.info("Sync server request received");
         if (!isAuthorized()) {
             return F.Promise.pure(unauthorized());
         }
-
-        return syncService.syncServer().map(r -> ok(r.getStatusText()));
+        F.Promise<Result> syncServerResult = syncService.syncServer().map(r -> ok(r.getStatusText()));
+        Logger.info("Received sync server result");
+        return syncServerResult;
     }
 
     private static boolean isAuthorized() {
