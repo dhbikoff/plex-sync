@@ -6,3 +6,9 @@ Web app for publishing your local Plex server for external access.
 - Play Framework (Java)
 - Java 8
 
+How to find your Plex Token:
+
+- Open up dev tools in browser
+- Select the Network tab
+- Look at the headers for the request to /system/:/prefs
+- The token is the value for X-Plex-Token
