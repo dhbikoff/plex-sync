@@ -5,4 +5,4 @@ GET     /                           controllers.Application.index
 POST    /login                      controllers.Application.login
 GET     /sync                       controllers.Application.syncServer
 GET     /syncStatus                 controllers.Application.syncStatus
-
+GET     /ping                       controllers.Application.ping

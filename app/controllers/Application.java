@@ -21,6 +21,10 @@ public class Application extends Controller {
 
     private static final PlexSyncService syncService = new PlexSyncService();
 
+    public static Result ping() {
+        return ok("pong");
+    }
+
     public static Result index() {
         if (!isAuthorized()) {
             return ok(index.render());
